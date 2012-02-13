@@ -36,7 +36,7 @@ update = true si el objeto requiere actulización
 scroll = true si el objeto funciona con scroll
 autoScroll = true si el objeto se deplaza automanticamente sin la enceisas de intervención continua del teclado
  */
-function EntityImageBase(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage,update)
+function EntityImageBase(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage, update)
 {
    // Constructor de la clase padre
    Entity.call(this, x, y, z, update);
@@ -62,7 +62,18 @@ function EntityImageBase(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, y
    {
 
       context.drawImage(this.image, this.xScroll, this.yScroll, this.widthScroll, this.heightScroll, this.x, this.y, this.widthScroll, this.heightScroll);
+      
+      this.drawCoordinates(context);
 
+   }
+   
+   this.drawCoordinates = function (context)
+   {
+      context.save();
+      context.fillStyle = 'rgb(255,255,255)';
+      context.font = 'bold 10px sans-serif';
+      context.fillText('P-x,y ' + this.xScroll + ',' + this.yScroll , 10, 35);
+      context.restore();
    }
 
 }

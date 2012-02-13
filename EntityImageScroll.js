@@ -1,10 +1,10 @@
 // JavaScript Document
-function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage, update,direction)
+function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage, update, direction)
 {
    // Constructor de la clase padre
-   EntityImageBase.call(this, src, x, y, z,widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage, update);
+   EntityImageBase.call(this, src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage, update);
    this.direction = direction;
-   
+
 
    this.update = function()
    {
