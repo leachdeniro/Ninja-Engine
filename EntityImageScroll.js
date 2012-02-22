@@ -1,8 +1,8 @@
 // JavaScript Document
-function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage, update, direction)
+function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage, direction)
 {
    // Constructor de la clase padre
-   EntityImageBase.call(this, src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage, update);
+   EntityImageBase.call(this, src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage);
    this.direction = direction;
 
 
@@ -69,3 +69,90 @@ function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd,
 
 // Extiendo de Entity
 EntityImageScroll.prototype = new EntityImageBase();
+
+
+
+function EntityImageScrollChild(src, x, y, z, widthScroll, heightScroll, xsd, ysd, widthStage, heightStage, father, direction)
+{
+   // Constructor de la clase padre
+   EntityImageScroll.call(this, src, x, y, z, widthScroll, heightScroll, 0, 0, xsd, ysd, widthStage, heightStage, direction);
+
+   this.x -= father.xsFather;
+   this.y -= father.ysFather;
+   this.xsdFather = father.xsdFather;
+   this.ysdFather = father.ysdFather;
+
+   this.update = function()
+   {
+      this.move();
+      this.scroll();
+   }
+
+   this.scroll = function()
+   {
+      switch (direction_scrolling)
+      {
+         case NORTH :
+         if (limitStageY == NONE)
+         {
+            this.y += this.ysdFather;
+         }
+         break;
+
+         case EAST :
+         if (limitStageX == NONE)
+         {
+            // this.x -= this.xsdFather;
+         }
+         break;
+
+         case SOUTH :
+         if (limitStageY == NONE)
+         {
+            this.y -= this.ysdFather;
+         }
+         break;
+
+         case WEST :
+         if (limitStageX == NONE)
+         {
+            // this.x += this.xsdFather;
+         }
+         break;
+
+         default :
+         break;
+      }
+
+   }
+}
+
+// Extiendo de Entity
+EntityImageScrollChild.prototype = new EntityImageScroll();
+
+
+function EntityImageScrollChild2(src, x, y, z, widthScroll, heightScroll, xsd, ysd, widthStage, heightStage, direction)
+{
+   // Constructor de la clase padre
+   EntityImageScroll.call(this, src, x, y, z, widthScroll, heightScroll, 0, 0, xsd, ysd, widthStage, heightStage, direction);
+   this.xInit = x;
+   this.yInit = y;
+   this.x = this.xInit - X_PLANO;
+   this.y = this.yInit - Y_PLANO;
+
+   this.update = function()
+   {
+      this.move();
+      this.scroll();
+   }
+
+   this.scroll = function()
+   {
+         this.x = this.xInit - X_PLANO;
+         this.y = this.yInit - Y_PLANO;
+
+   }
+}
+
+// Extiendo de Entity
+EntityImageScrollChild2.prototype = new EntityImageScroll();

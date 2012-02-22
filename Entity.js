@@ -4,13 +4,12 @@
 Clase base para las entidades a dibujar
  */
 
-function Entity(x, y, z, update)
+function Entity(x, y, z)
 {
    this.x = x;
    this.y = y;
    this.zdepth = z;
-   this.isUpdate = update;
-
+   
    // return this; Sin uso por ahora
    this.drawFn =  function(fn, context)
    {
@@ -18,3 +17,11 @@ function Entity(x, y, z, update)
    }
 
 }
+
+function FatherEntityImage(xsFather,ysFather, xsdFather, ysdFather){
+    this.xsFather = xsFather;
+    this.ysFather = ysFather;
+    this.xsdFather = xsdFather;
+    this.ysdFather = ysdFather;
+}
+
