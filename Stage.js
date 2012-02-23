@@ -25,6 +25,37 @@ function Stage(src, x, y, z, etapa)
          }
       }
    }
+
+   this.collision = function(entity, etapa)
+   {
+
+      var colIni = Math.floor(entity.x / 10);
+      var rowIni = Math.floor(entity.y / 10);
+      var colFin = Math.floor((entity.x + entity.w) / 10);
+      var rowFin = Math.floor((entity.y + entity.h) / 10);
+      // alert('Fila:' + row + ',Columna:' + col);
+
+      if (colIni == 34 && rowIni == 19)
+      {
+         var hola = 1;
+      }
+      if (rowFin == 65)
+      {
+         var chao = 1;
+      }
+      for (yAxis = rowIni; yAxis <= rowFin; yAxis ++ )
+      {
+         for (xAxis = colIni; xAxis <= colFin; xAxis ++ )
+         {
+            if ( this.etapa[yAxis][xAxis] == 2)
+            {
+               return true;
+            }
+         }
+      }
+      return false;
+   }
+
 }
 // Extiendo de Entity
 Stage.prototype = new Entity();
@@ -38,11 +69,13 @@ function isCollision(x, y, w, h, etapa)
    var rowFin = Math.floor((y + h) / 10);
    // alert('Fila:' + row + ',Columna:' + col);
 
-   if (colIni == 34&& rowIni == 19){
-    var hola = 1;
+   if (colIni == 34 && rowIni == 19)
+   {
+      var hola = 1;
    }
-   if (rowFin == 65){
-    var chao = 1;
+   if (rowFin == 65)
+   {
+      var chao = 1;
    }
    for (yAxis = rowIni; yAxis <= rowFin; yAxis ++ )
    {
@@ -192,7 +225,7 @@ var etapa2 = [[1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1
 [1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	2, 	2, 	2, 	2, 	2, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1],
 [1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	2, 	2, 	2, 	2, 	2, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1],
 [1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	2, 	2, 	2, 	2, 	2, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1],
-[1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1]]
+[1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1, 	1]]
 
 
 // alert(isCollision(140, 210, 28, 42, etapa1));

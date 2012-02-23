@@ -7,23 +7,6 @@ WEST = 4,
 NONE = 0;
 
 /*
-Clase que representa las propiedades de un escenario con scrolling
-Sin uso hasta verificar, cómo acceder a los atributos del objeto al pasarlo como parámetro en otra clase.
- */
-function StageEntity(widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage)
-{
-   this.widthScroll = widthScroll;
-   this.heightScroll = heightScroll;
-   this.xScroll = xs;
-   this.yScroll = ys;
-   this.xAxisd = xsd;
-   this.yAxisd = ysd;
-   this.widthStage = widthStage;
-   this.heightStage = heightStage;
-}
-
-
-/*
 Clase que representa a una entidad con imagen. Extiende de la clase Entity
 Parámetros
 src = path de la imagen a pintar
@@ -39,7 +22,7 @@ autoScroll = true si el objeto se deplaza automanticamente sin la enceisas de in
 function EntityImageBase(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage)
 {
    // Constructor de la clase padre
-   Entity.call(this, x, y, z);
+   Entity.call(this, x, y, widthStage, heightStage, z);
    this.image = new Image();
    this.image.src = src;
    this.widthScroll = widthScroll;
@@ -48,8 +31,6 @@ function EntityImageBase(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, y
    this.yScroll = ys;
    this.xAxisd = xsd;
    this.yAxisd = ysd;
-   this.widthStage = widthStage;
-   this.heightStage = heightStage;
    this.maxWStage = widthStage - widthScroll;
    this.maxHStage = heightStage - heightScroll;
 
@@ -62,10 +43,10 @@ function EntityImageBase(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, y
    {
 
       context.drawImage(this.image, this.xScroll, this.yScroll, this.widthScroll, this.heightScroll, this.x, this.y, this.widthScroll, this.heightScroll);
-      
+
    }
-   
-   this.drawCoordinates = function (context,px,py)
+
+   this.drawCoordinates = function (context, px, py)
    {
       context.save();
       context.fillStyle = 'rgb(255,255,255)';
