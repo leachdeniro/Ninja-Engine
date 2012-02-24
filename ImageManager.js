@@ -18,6 +18,10 @@ function ImageManager()
    this.removeImage =  function (image)
    {
    }
+   
+   this.getImage = function(idx){
+    return this.images[idx]; 
+   }
 
    /* ordena de forma ascencente o desdendente.
    type == 1, ascendente(default)

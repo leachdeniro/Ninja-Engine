@@ -1,10 +1,10 @@
 /*
 Clase que representa a una entidad con imagen. Extiende de la clase Entity
  */
-function Stage(src, x, y, z, etapa)
+function Stage(src, x, y, z, w,h,etapa)
 {
    // Constructor de la clase padre
-   Entity.call(this, x, y, z);
+   Entity.call(this, x, y, w,h, z);
 
    this.image = new Image();
    this.image.src = src;
@@ -18,38 +18,42 @@ function Stage(src, x, y, z, etapa)
          {
             if ( this.etapa[yAxis][xAxis] == 2)
             {
-               var x = xAxis * 10 - X_PLANO;
-               var y = yAxis * 10 - Y_PLANO;
+               var x = xAxis * 10 - PLANO.x;
+               var y = yAxis * 10 - PLANO.y;
                context.drawImage(this.image, x, y, 10, 10);
             }
          }
       }
    }
 
-   this.collision = function(entity, etapa)
+   this.collision = function(entity)
    {
 
-      var colIni = Math.floor(entity.x / 10);
-      var rowIni = Math.floor(entity.y / 10);
-      var colFin = Math.floor((entity.x + entity.w) / 10);
-      var rowFin = Math.floor((entity.y + entity.h) / 10);
-      // alert('Fila:' + row + ',Columna:' + col);
+      if (entity instanceof Character)
+      {
 
-      if (colIni == 34 && rowIni == 19)
-      {
-         var hola = 1;
-      }
-      if (rowFin == 65)
-      {
-         var chao = 1;
-      }
-      for (yAxis = rowIni; yAxis <= rowFin; yAxis ++ )
-      {
-         for (xAxis = colIni; xAxis <= colFin; xAxis ++ )
+         var colIni = Math.floor(entity.xInS / 10);
+         var rowIni = Math.floor(entity.yInS / 10);
+         var colFin = Math.floor((entity.xInS + entity.w) / 10);
+         var rowFin = Math.floor((entity.yInS + entity.h) / 10);
+         // alert('Fila:' + row + ',Columna:' + col);
+
+         /* if (colIni == 34 && rowIni == 19)
          {
-            if ( this.etapa[yAxis][xAxis] == 2)
+         var hola = 1;
+         }
+         if (rowFin == 65)
+         {
+         var chao = 1;
+         } */
+         for (yAxis = rowIni; yAxis <= rowFin; yAxis ++ )
+         {
+            for (xAxis = colIni; xAxis <= colFin; xAxis ++ )
             {
-               return true;
+               if ( this.etapa[yAxis][xAxis] == 2)
+               {
+                  return true;
+               }
             }
          }
       }

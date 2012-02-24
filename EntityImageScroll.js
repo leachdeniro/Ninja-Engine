@@ -77,8 +77,8 @@ function EntityImageScrollChild(src, x, y, z, widthScroll, heightScroll, xsd, ys
    EntityImageScroll.call(this, src, x, y, z, widthScroll, heightScroll, 0, 0, xsd, ysd, widthStage, heightStage, direction);
    this.xInit = x;
    this.yInit = y;
-   this.x = this.xInit - X_PLANO;
-   this.y = this.yInit - Y_PLANO;
+   this.x = this.xInit - PLANO.x;
+   this.y = this.yInit - PLANO.y;
 
    this.update = function()
    {
@@ -88,10 +88,12 @@ function EntityImageScrollChild(src, x, y, z, widthScroll, heightScroll, xsd, ys
 
    this.scroll = function()
    {
-         this.x = this.xInit - X_PLANO;
-         this.y = this.yInit - Y_PLANO;
+         this.x = this.xInit - PLANO.x;
+         this.y = this.yInit - PLANO.y;
 
    }
+   
+   
 }
 
 // Extiendo de Entity
