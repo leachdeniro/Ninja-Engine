@@ -17,3 +17,13 @@ function StageManager(){
 	}
 	
 }
+
+// JavaScript Document
+function ConfigStage(character,plano)
+{
+   //@type SimpleCharacter 
+   this.character = character;
+   //@type Plano
+   this.plano = plano;
+  
+}
