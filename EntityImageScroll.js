@@ -5,21 +5,20 @@ function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd,
    EntityImageBase.call(this, src, x, y, z, widthScroll, heightScroll, xs, ys, xsd, ysd, widthStage, heightStage);
    this.direction = direction;
 
-
-   this.update = function()
+   this.update = function(dt)
    {
       this.move();
    }
 
-   this.move = function()
+   this.move = function(dt)
    {
 
       switch (this.direction)
       {
          case NORTH :
-            if ((this.yScroll - this.yAxisd) >= 0)
+            if ((this.yScroll - this.yAxisd*dt) >= 0)
             {
-               this.yScroll -= this.yAxisd;
+               this.yScroll -= this.yAxisd*dt;
             }
             else
             {
@@ -28,9 +27,9 @@ function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd,
 
             break;
          case EAST :
-            if ((this.xScroll + this.xAxisd) <= (this.maxWStage - this.xAxisd))
+            if ((this.xScroll + this.xAxisd*dt) <= (this.maxWStage - this.xAxisd*dt))
             {
-               this.xScroll += this.xAxisd;
+               this.xScroll += this.xAxisd*dt;
             }
             else
             {
@@ -39,9 +38,9 @@ function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd,
 
             break;
          case SOUTH :
-            if ((this.yScroll + this.yAxisd) <= (this.maxHStage - this.yAxisd))
+            if ((this.yScroll + this.yAxisd*dt) <= (this.maxHStage - this.yAxisd*dt))
             {
-               this.yScroll += this.yAxisd;
+               this.yScroll += this.yAxisd*dt;
             }
             else
             {
@@ -50,9 +49,9 @@ function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd,
 
             break;
          case WEST :
-            if ((this.xScroll - this.xAxisd) >= 0)
+            if ((this.xScroll - this.xAxisd*dt) >= 0)
             {
-               this.xScroll -= this.xAxisd;
+               this.xScroll -= this.xAxisd*dt;
             }
             else
             {
@@ -80,9 +79,9 @@ function EntityImageScrollChild(src, x, y, z, widthScroll, heightScroll, xsd, ys
    this.x = this.xInit - PLANO.x;
    this.y = this.yInit - PLANO.y;
 
-   this.update = function()
+   this.update = function(dt)
    {
-      this.move();
+      this.move(dt);
       this.scroll();
    }
 
