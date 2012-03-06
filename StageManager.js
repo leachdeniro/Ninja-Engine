@@ -16,6 +16,18 @@ function StageManager(){
 	   return this.stages[position];
 	}
 	
+	this.addEntity = function(entity){
+		this.getStage(PLANO.numStage - 1).addSpawnEntities(entity);
+	}
+	
+	this.removeEntity = function(entity){
+		this.getStage(PLANO.numStage - 1).addDeletesEntities(entity);
+	}
+	
+	this.getLengthCurrentEntities = function(){
+		this.getStage(PLANO.numStage - 1).images.length;
+	}
+	
 }
 
 // JavaScript Document

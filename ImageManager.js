@@ -4,12 +4,17 @@ function ImageManager()
    this.images = null;
    // @type ConfigStage
    this.nearStages = null;
-
+   
+   this.spawnEntities = null;
+   
+   this.deletesEntities = null;
+   
    this.initImageManager = function()
    {
       this.images = new Array();
       this.nearStages = new Array();
-
+	  this.spawnEntities = new Array();
+	  this.deletesEntities = new Array();
       return this;
    }
 
@@ -22,9 +27,41 @@ function ImageManager()
    {
       this.nearStages.push(configStage);
    }
-
+   
+   this.addSpawnEntities = function(entity){
+      //console.log("addSpawnEntities");
+	  this.spawnEntities.push(entity);
+   }
+   
+   this.addDeletesEntities = function(entity){
+	  this.deletesEntities.push(entity);
+   }
+   
+   this.pushOverEntities = function(){
+	 var largo = this.spawnEntities.length;
+     for (var i = 0; i < largo; i++){
+		this.addImage(this.spawnEntities.pop());
+	 }
+   }
+   
+   this.newEntities = function(){
+	   return this.spawnEntities.length > 0;
+	}
+   
    this.removeImage =  function (image)
    {
+	  this.images.splice(this.images.indexOf(image),1);
+   }
+   
+   this.removeDeletesEntities = function(){
+		for (var i=0; i < this.deletesEntities.length; i++){
+			this.removeImage(this.deletesEntities[i]);
+		}
+		//limpio la lista de entidades a eliminar
+		var largo = this.deletesEntities.length;
+		for (var i=0; i < largo; i++){
+			this.deletesEntities.pop();
+		}
    }
 
    this.getImage = function(idx)

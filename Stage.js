@@ -12,6 +12,7 @@ function Stage(src, x, y, z, w, h, etapa)
 
    this.draw = function (context)
    {
+      //console.log("Stage");
       for (yAxis = 0; yAxis < 65; yAxis ++ )
       {
          for (xAxis = 0; xAxis < 90; xAxis ++ )
@@ -41,15 +42,7 @@ function Stage(src, x, y, z, w, h, etapa)
          var rowIni = Math.floor(entity.yInS / 10);
          var colFin = Math.floor((entity.xInS + entity.w) / 10);
          var rowFin = Math.floor((entity.yInS + entity.h) / 10);
-
-         /* if (colIni == 34 && rowIni == 19)
-         {
-         var hola = 1;
-         }
-         if (rowFin == 65)
-         {
-         var chao = 1;
-         } */
+		 
          for (yAxis = rowIni; yAxis <= rowFin; yAxis ++ )
          {
             for (xAxis = colIni; xAxis <= colFin; xAxis ++ )
@@ -224,9 +217,10 @@ var arrayRoad1 = [
 ];
 
 // Elementos del escenario
+
 var elements_s1 = [
 ["Stage", "layer0.png", 0, 0, 4, 900, 650, etapa2],
-["EntityImage", "layer2.png", 0, 0, 1, WIDTH, HEIGHT, PLANO.x, PLANO.y, 3, 3, PLANO.wS, PLANO.hS],
+["EntityImage", "layer2.png", 0, 0, 1, WIDTH, HEIGHT, 0, 0, 3, 3, 900, 650],
 ["EntityImageScrollChild", "mar.png", 0, 0, 2, 900, 320, 2, 2, 1707, 320, EAST],
 ["EntityImageChild", "arboles.png", 0, 100, 3, 1707, 320],
 ["Character", "personaje.png", 50, 50, 9, 28, 42, 4, 7, 4, 3, 3, 50, 60, arrayPrincipal, new Entity(50, 50)],
@@ -244,7 +238,8 @@ var conectors_s1 = [
 [100, "SimpleCharacter", 0, 540, true, false, true, false, false, 4, 30],
 [100, "Plano", 0, 50, WIDTH, HEIGHT, 900, 650, 2, WEST, SOUTH],
 [101, "SimpleCharacter", 820, 20, true, true, false, false, false, 4, 35],
-[101, "Plano", 50, 0, WIDTH, HEIGHT, 900, 650, 2, EAST, NORTH]
+[101, "Plano", 50, 0, WIDTH, HEIGHT, 900, 650, 2, EAST, NORTH],
+[102, "Este no se carga"]
 ];
 
 //* * * * * * * * * * * * * * * * * Elementos escenario 2 * * * * * * * * * * * * * * * *
@@ -257,7 +252,7 @@ var arrayRoad2 = [
 
 var elements_s2 = [
 ["Stage", "layer0.png", 0, 0, 4, 900, 650, etapa3],
-["EntityImage", "paisaje.png", 0, 0, 1, WIDTH, HEIGHT, PLANO.x, PLANO.y, 3, 3, PLANO.wS, PLANO.hS],
+["EntityImage", "paisaje.png", 0, 0, 1, WIDTH, HEIGHT, 0, 0, 3, 3, 900, 650],
 ["Character", "personaje.png", 50, 50, 9, 28, 42, 4, 7, 4, 3, 3, 50, 60, arrayPrincipal, new Entity(50, 50)],
 ["Enemy", "enemy.png", 0, 50, 5, 48, 48, 1, 12, 4, 2, 2, 70, 70, arrayEnemy, arrayRoad2[0]],
 ["Enemy", "enemy.png", 0, 200, 6, 48, 48, 1, 12, 4, 2, 2, 70, 70, arrayEnemy, arrayRoad2[1]],
@@ -269,18 +264,12 @@ var elements_s2 = [
 
 // Conectores a otros escenarios desde el escenario 2
 var conectors_s2 = [
-[0,"SimpleCharacter",820, 540, true, true, false, false, false, 4, 35],
-[0,"Plano",50, 50, WIDTH, HEIGHT, 900, 650, 1, EAST, SOUTH],
-[1,"SimpleCharacter",0, 300, true, false, true, false, false, 4, 25],
-[1,"Plano",0, 50, WIDTH, HEIGHT, 900, 650, 1, WEST, SOUTH]
+[100,"SimpleCharacter",820, 540, true, true, false, false, false, 4, 35],
+[100,"Plano",50, 50, WIDTH, HEIGHT, 900, 650, 1, EAST, SOUTH],
+[101,"SimpleCharacter",0, 300, true, false, true, false, false, 4, 25],
+[101,"Plano",0, 50, WIDTH, HEIGHT, 900, 650, 1, WEST, SOUTH],
+[102,"Este no se carga"]
 ]
 
- /* Primer punto
-      var configStage = new ConfigStage(character, plano);
-      imageManager.addNearStages(configStage);
-
-      // Segundo punto
-      configStage = new ConfigStage(character, plano);
-      imageManager.addNearStages(configStage);*/
 
 // alert(elements_s1[2][2]);
