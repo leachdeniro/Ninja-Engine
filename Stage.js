@@ -38,11 +38,15 @@ function Stage(src, x, y, z, w, h, etapa)
       if (entity instanceof Character)
       {
 
+		 //console.log(entity.x +"," +entity.y +"," + entity.xInS +"," + entity.yInS + "," +entity.typeCollision);
          var colIni = Math.floor(entity.xInS / 10);
          var rowIni = Math.floor(entity.yInS / 10);
          var colFin = Math.floor((entity.xInS + entity.w) / 10);
          var rowFin = Math.floor((entity.yInS + entity.h) / 10);
 		 
+		 if (colIni == 34){
+			var hola =1;
+		 }
          for (yAxis = rowIni; yAxis <= rowFin; yAxis ++ )
          {
             for (xAxis = colIni; xAxis <= colFin; xAxis ++ )
@@ -61,7 +65,26 @@ function Stage(src, x, y, z, w, h, etapa)
                }
             }
          }
-      }
+      } else if (entity instanceof Shoot){
+		 var x = entity.x+PLANO.x;
+		 var y = entity.y+PLANO.y;
+		 var colIni = Math.floor(x / 10);
+         var rowIni = Math.floor(y / 10);
+         var colFin = Math.floor((x + entity.r) / 10);
+         var rowFin = Math.floor((y + entity.r) / 10);
+		 
+         for (yAxis = rowIni; yAxis <= rowFin; yAxis ++ )
+         {
+            for (xAxis = colIni; xAxis <= colFin; xAxis ++ )
+            {
+			   if ((yAxis >= 0 && yAxis <= this.etapa.length) && (xAxis >= 0 && xAxis <= this.etapa[yAxis].length)){
+					if (this.etapa[yAxis][xAxis] == 2 || (this.etapa[yAxis][xAxis] >= 100 && this.etapa[yAxis][xAxis] <= 200)){
+						return true;
+					}
+			   }
+            }
+         }
+	  }
       return false;
    }
 
@@ -219,18 +242,18 @@ var arrayRoad1 = [
 // Elementos del escenario
 
 var elements_s1 = [
-["Stage", "layer0.png", 0, 0, 4, 900, 650, etapa2],
+["Stage", "layer0.png", 0, 0, 9, 900, 650, etapa2],
 ["EntityImage", "layer2.png", 0, 0, 1, WIDTH, HEIGHT, 0, 0, 80, 80, 900, 650],
 ["EntityImageScrollChild", "mar.png", 0, 0, 2, 900, 320, 30, 30, 1707, 320, EAST],
 ["EntityImageChild", "arboles.png", 0, 100, 3, 1707, 320],
-["Character", "personaje.png", 50, 50, 9, 28, 42, 4, 7, 4, 80, 80, 50, 60, arrayPrincipal, new Entity(50, 50)],
+["Character", "personaje.png", 50, 50, 4, 28, 42, 4, 7, 4, 80, 80, 50, 60, arrayPrincipal, new Entity(50, 50)],
 ["Enemy", "enemy.png", 0, 50, 5, 48, 48, 1, 12, 4, 80, 80, 70, 70, arrayEnemy, arrayRoad1[0]],
 ["Enemy", "enemy.png", 0, 200, 6, 48, 48, 1, 12, 4, 80, 80, 70, 70, arrayEnemy, arrayRoad1[1]],
 ["Enemy", "enemy.png", 0, 300, 7, 48, 48, 1, 12, 4, 80, 80, 70, 70, arrayEnemy, arrayRoad1[2]],
 ["Enemy", "personaje.png", 0, 400, 8, 28, 42, 4, 7, 4, 80, 80, 70, 70, arrayPrincipal, arrayRoad1[3]],
-["EntityImageChild", "tunel_west.png", 820, 580, 11, 80, 70],
-["EntityImageChild", "tunel_east.png", 0, 350, 12, 80, 90],
-["FpsCore", 10, "rgb(255,255,255)"]
+["EntityImageChild", "tunel_west.png", 820, 580, 10, 80, 70],
+["EntityImageChild", "tunel_east.png", 0, 350, 11, 80, 90],
+["FpsCore", 12, "rgb(255,255,255)"]
 ];
 
 // Conectores a otros escenarios desde el escenario 1
@@ -251,15 +274,15 @@ var arrayRoad2 = [
 ];
 
 var elements_s2 = [
-["Stage", "layer0.png", 0, 0, 4, 900, 650, etapa3],
+["Stage", "layer0.png", 0, 0, 6, 900, 650, etapa3],
 ["EntityImage", "paisaje.png", 0, 0, 1, WIDTH, HEIGHT, 0, 0, 80, 80, 900, 650],
-["Character", "personaje.png", 50, 50, 9, 28, 42, 4, 7, 4, 80, 80, 50, 60, arrayPrincipal, new Entity(50, 50)],
-["Enemy", "enemy.png", 0, 50, 5, 48, 48, 1, 12, 4, 80, 80, 70, 70, arrayEnemy, arrayRoad2[0]],
-["Enemy", "enemy.png", 0, 200, 6, 48, 48, 1, 12, 4, 80, 80, 70, 70, arrayEnemy, arrayRoad2[1]],
-["Enemy", "enemy.png", 0, 300, 7, 48, 48, 1, 12, 4, 80, 80, 70, 70, arrayEnemy, arrayRoad2[2]],
-["EntityImageChild", "tunel_east.png", 0, 580, 11, 80, 70],
-["EntityImageChild", "tunel_west.png", 820, 0, 12, 80, 90],
-["FpsCore", 10, "rgb(255,255,255)"]
+["Character", "personaje.png", 50, 50, 2, 28, 42, 4, 7, 4, 80, 80, 50, 60, arrayPrincipal, new Entity(50, 50)],
+["Enemy", "enemy.png", 0, 50, 3, 48, 48, 1, 12, 4, 80, 80, 70, 70, arrayEnemy, arrayRoad2[0]],
+["Enemy", "enemy.png", 0, 200, 4, 48, 48, 1, 12, 4, 80, 80, 70, 70, arrayEnemy, arrayRoad2[1]],
+["Enemy", "enemy.png", 0, 300, 5, 48, 48, 1, 12, 4, 80, 80, 70, 70, arrayEnemy, arrayRoad2[2]],
+["EntityImageChild", "tunel_east.png", 0, 580, 8, 80, 70],
+["EntityImageChild", "tunel_west.png", 820, 0, 9, 80, 90],
+["FpsCore", 7, "rgb(255,255,255)"]
 ];
 
 // Conectores a otros escenarios desde el escenario 2
@@ -272,4 +295,4 @@ var conectors_s2 = [
 ]
 
 
-// alert(elements_s1[2][2]);
+//alert(etapa2.length);

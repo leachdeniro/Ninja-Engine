@@ -67,7 +67,7 @@ function EntityImageScroll(src, x, y, z, widthScroll, heightScroll, xs, ys, xsd,
 }
 
 // Extiendo de Entity
-EntityImageScroll.prototype = new EntityImageBase();
+EntityImageScroll.prototype = new EntityImageBase("layer0.png");
 
 
 function EntityImageScrollChild(src, x, y, z, widthScroll, heightScroll, xsd, ysd, widthStage, heightStage, direction)
@@ -96,4 +96,4 @@ function EntityImageScrollChild(src, x, y, z, widthScroll, heightScroll, xsd, ys
 }
 
 // Extiendo de Entity
-EntityImageScrollChild.prototype = new EntityImageScroll();
+EntityImageScrollChild.prototype = new EntityImageScroll("layer0.png");
