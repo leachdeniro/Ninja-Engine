@@ -1,4 +1,4 @@
-
+﻿
 
 /*
 Clase base para las entidades a dibujar

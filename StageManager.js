@@ -31,8 +31,10 @@ function StageManager(){
 }
 
 // JavaScript Document
-function ConfigStage(character,plano)
+function ConfigStage(id, character,plano)
 {
+   //identificador del conector
+   this.id = id;
    //@type SimpleCharacter 
    this.character = character;
    //@type Plano

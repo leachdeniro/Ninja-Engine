@@ -69,9 +69,19 @@ function ImageManager()
       return this.images[idx];
    }
 
-   this.getNearStages = function(idx)
+   this.getNearStages = function(id)
    {
-      return this.nearStages[idx];
+	  if (this.nearStages.length == 0){
+		throw "No existen áreas cercanas en el arreglo";
+	  }
+	  var i = 0;
+	  do{
+		if (this.nearStages[i].id == id){
+			return this.nearStages[i];
+		}
+	  }
+	  while(++i < this.nearStages.length)
+	  return null;
    }
 
    /* ordena de forma ascencente o desdendente.
@@ -144,6 +154,11 @@ function ImageManager()
          {
             this.images[i].xScroll = plano.x;
             this.images[i].yScroll = plano.y;
+			this.images[i].west = plano.west;
+			this.images[i].east = plano.east;
+			this.images[i].north = plano.north;
+			this.images[i].south = plano.south;
+			this.images[i].none = false;
             return;
          }
       }
