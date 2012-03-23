@@ -408,7 +408,7 @@ var elements_s1 = [
 ["Enemy", "personaje.png", 0, 400, 8, 28, 42, 4, 7, 4, 80, 80, 70, 70, arrayPrincipal, arrayRoad1[3]],
 ["EntityImageChild", "tunel_west.png", 820, 580, 10, 80, 70],
 ["EntityImageChild", "tunel_east.png", 0, 350, 11, 80, 90],
-["TextDialogWindow2", "monje1.png", "monje.png", dialog2, 12, 3, 3],
+["TextDialogWindow2", "monje1.png", "detective.png", dialog2, 12, 3, 3],
 ["FpsCore", 13, "rgb(255,255,255)"]
 ];
 

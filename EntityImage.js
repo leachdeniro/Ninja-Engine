@@ -243,7 +243,7 @@ EntityImageChild.prototype = new Entity();
 
 /*
 TextDialogWindow
- */
+ *
 function TextDialogWindow(src1, src2, texto, z, velocity, paragraphLength)
 {
 
@@ -285,6 +285,7 @@ function TextDialogWindow(src1, src2, texto, z, velocity, paragraphLength)
    this.update = function()
    {
 		if (this.busy){
+			
 			return;
 		}
 	    if ((this.countVelocity % this.velocity) != 0){
@@ -394,7 +395,7 @@ function TextDialogWindow(src1, src2, texto, z, velocity, paragraphLength)
 		}
    }
 
-}
+}*/
 
 function TextDialogWindow2(src1, src2, texto, z, velocity, paragraphLength)
 {
@@ -437,6 +438,7 @@ function TextDialogWindow2(src1, src2, texto, z, velocity, paragraphLength)
    this.update = function()
    {
 		if (this.busy){
+			stages.removeEntity(this);
 			return;
 		}
 	    if ((this.countVelocity % this.velocity) != 0){
@@ -478,22 +480,57 @@ function TextDialogWindow2(src1, src2, texto, z, velocity, paragraphLength)
 		}
    }
 
+   
    this.draw = function (ctx)
    {
    
 		if (this.busy){
 			return;
 		}
-		ctx.drawImage(this.image1, 10, 250 , 250, 264);
+		var xImg = 0, yImg = 0, img;
+		switch(this.textToShow[this.currentIdxCharacter][1] )
+		{
+			case 0:
+				break;
+			case 1:
+				xImg = 10;
+				yImg = 250;
+				img = this.image1;
+				break;
+			case 2:
+				xImg = 580;
+				yImg = 250;
+				img = this.image2;
+				break;
+			default:
+				throw "No existe ese tipo de orientación '" + this.textToShow[this.currentIdxCharacter][1] + "' para la imágen";
+  
+		}
+		var xName = 0;
+		switch(this.textToShow[this.currentIdxCharacter][2] )
+		{
+			case 1:
+				xName = 0;
+				break;
+			case 2:
+				xName = 830 - (this.textLengthCharacter[this.currentIdxCharacter] + 20);
+				break;
+			default:
+				throw "No existe ese tipo de orientación '" + this.textToShow[this.currentIdxCharacter][2] + "' para el nombre del personaje";
+  
+		}
+		if (this.textToShow[this.currentIdxCharacter][1] > 0){
+			ctx.drawImage(img, xImg, yImg , 250, 264);
+		}
 		
 		ctx.save();
 		
 		ctx.beginPath();
 		ctx.translate(10, 460);
         ctx.strokeStyle = this.colorRectLine;
-        ctx.strokeRect (0, 0, this.textLengthCharacter[this.currentIdxCharacter] + 20, 30);
+        ctx.strokeRect (xName, 0, this.textLengthCharacter[this.currentIdxCharacter] + 20, 30);
         ctx.fillStyle = this.colorRectFill;
-        ctx.fillRect (0, 0, this.textLengthCharacter[this.currentIdxCharacter] + 20, 30);
+        ctx.fillRect (xName, 0, this.textLengthCharacter[this.currentIdxCharacter] + 20, 30);
 		ctx.closePath();
         ctx.fill();
 		
@@ -509,7 +546,7 @@ function TextDialogWindow2(src1, src2, texto, z, velocity, paragraphLength)
 		ctx.font = this.fontText;
 		ctx.fillStyle = this.colorText;
 		
-		ctx.fillText(this.textToShow[this.currentIdxCharacter][0], 0, 20);
+		ctx.fillText(this.textToShow[this.currentIdxCharacter][0], xName, 20);
 		var text = this.currentText.substring(0,this.countText);
 		wrapText(ctx, text, 10, 60, 800, 25);
 		
